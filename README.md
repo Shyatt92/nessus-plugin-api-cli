@@ -19,7 +19,7 @@ Authentication:
       nessus_api_token
 
 An Access Key and Secret Key can be obtained from the Nessus UI:
-![[./Images/nessus-generate-api-keys.png]]
+![Generate API keys in Nessus](./Images/nessus-generate-api-keys.png)
 
 Outputs:
   --out / -o   Comma-separated output types: json,csv,txt (txt output is simply a list of CVE numbers)
