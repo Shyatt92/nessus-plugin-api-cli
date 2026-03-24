@@ -75,10 +75,14 @@ Search plugin names using boolean logic.
 
 #### Examples
 ```
---expr "Windows AND 2016"
---expr "KB5075999 OR KB5073722"
---expr "(Windows AND Server) AND NOT 2019"
+--expr 'Windows AND 2016'
+--expr 'KB5075999 OR KB5073722'
+--expr '(Windows AND Server) AND NOT 2019'
 ```
+
+#### Notes
+- Expressions should be single-quoted to avoid search inconsistencies
+- Individual search terms that include spaces (i.e. Windows Server 2019) should be double-quoted to capture the space character: `--expr '"Windows Server 2016"'`
 
 ### 2. Direct Plugin ID Mode
 
