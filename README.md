@@ -1,26 +1,27 @@
-Nessus Plugin Extractor & Analyzer
+# Nessus Plugin Extractor & Analyzer
 
 A Python CLI tool for querying a local Nessus Professional instance, extracting plugin data, and exporting it in multiple formats.
 
-🚀 Features
-🔍 Search plugins by name using advanced boolean logic:
-Supports AND, OR, NOT, and parentheses
-🎯 Direct plugin lookup using plugin IDs
-⚡ Multithreaded fetching for fast data retrieval
-🔐 Flexible authentication
-CLI arguments
-Environment variables
-📄 Multiple output formats
-JSON (full data)
-CSV (structured + dynamic attributes)
-TXT (flat CVE list)
-🧠 Dynamic CSV columns
-Automatically includes all Nessus plugin attributes
-🔇 Suppress SSL warnings with -k
-🧩 Works with inconsistent Nessus API responses (robust parsing)
-📦 Requirements
-Python 3.8+
-requests
+### 🚀 Features
+- 🔍 Search plugins by name using advanced boolean logic:
+  - Supports AND, OR, NOT, and parentheses
+- 🎯 Direct plugin lookup using plugin IDs
+- ⚡ Multithreaded fetching for fast data retrieval
+- 🔐 Flexible authentication
+  - CLI arguments
+  - Environment variables
+- 📄 Multiple output formats
+  - JSON (full data)
+  - CSV (structured + dynamic attributes)
+  - TXT (flat CVE list)
+- 🧠 Dynamic CSV columns
+  - Automatically includes all Nessus plugin attributes
+- 🔇 Suppress SSL warnings with -k
+- 🧩 Works with inconsistent Nessus API responses (robust parsing)
+
+## 📦 Requirements
+- Python 3.8+
+- requests
 
 Install dependencies:
 
