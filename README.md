@@ -94,6 +94,7 @@ Multiple IDs:
 ## 📤 Output Options
 
 `--out / -o`
+
 Comma-separated list of output formats:
 ```
 json,csv,txt
@@ -104,8 +105,9 @@ json,csv,txt
 | json | Full Nessus plugin JSON               |
 | csv  | Structured output with all attributes |
 | txt  | Flat list of CVEs (one per line)      |
-***
+
 `--filename / -f`
+
 Single base filename used for all outputs.
 ```
 --filename results
@@ -126,79 +128,93 @@ If `--out` is not specified:
 
 The CSV includes:
 
-Fixed Columns
-PluginID
-PluginName
-ReportedCVEs
-CVSSv3_RiskFactor
-CVSSv3_BaseScore
-CVSSv3_ScoreSource
-ReferenceURL
-Dynamic Columns
+#### Fixed Columns
+- PluginID
+- PluginName
+- ReportedCVEs
+- CVSSv3_RiskFactor
+- CVSSv3_BaseScore
+- CVSSv3_ScoreSource
+- ReferenceURL
 
-Every attribute_name returned by Nessus becomes a column.
+#### Dynamic Columns
+
+Every `attribute_name` returned by Nessus becomes a column.
 
 Example:
 
+```
 cve, cvss3_base_score, synopsis, solution, plugin_type, etc.
-
+```
 Values are:
+- Semicolon-separated
+- Deduplicated
 
-Semicolon-separated
-Deduplicated
-📄 TXT Output
-Contains all CVEs across all matched plugins
-One CVE per line
-Deduplicated
+### 📄 TXT Output
+- Contains all CVEs across all matched plugins
+- One CVE per line
+- Deduplicated
 
 Example:
-
+```
 CVE-2026-12345
 CVE-2025-54321
 ...
-⚡ Performance
-Uses ThreadPoolExecutor
-Default: --workers 6
+```
+
+## ⚡ Performance
+- Uses `ThreadPoolExecutor`
+- Default: `--workers 6`
 
 Adjust as needed:
-
+```
 --workers 10
-🔒 SSL Handling
+```
 
-Use -k to disable SSL verification:
+## 🔒 SSL Handling
 
+Use `-k` to disable SSL verification:
+```
 -k
-
+```
 This will:
+- Skip certificate validation
+- Suppress `InsecureRequestWarning`
 
-Skip certificate validation
-Suppress InsecureRequestWarning
-🧪 Examples
-Example 1: Search + All Outputs
-python tool.py \
+
+## 🧪 Examples
+### Example 1: Search + All Outputs
+```
+python fetch_matched_nessus_plugin.py \
   --expr '(Windows AND 2016) AND NOT 2019' \
   --out json,csv,txt \
   --filename results \
   -k
-Example 2: Direct Plugin Lookup
-python tool.py \
+```
+### Example 2: Direct Plugin Lookup
+```
+python fetch_matched_nessus_plugin.py \
   --plugin-id 298556,283466 \
   --out csv \
   --filename plugins \
   -k
-Example 3: Using Environment Variables
+```
+### Example 3: Using Environment Variables
+```
 export nessus_access_key=XXX
 export nessus_secret_key=YYY
 
-python tool.py \
+python fetch_matched_nessus_plugin.py \
   --expr "KB5075999" \
   --out json \
   -f output \
   -k
-⚠️ Notes
-Nessus API endpoints can vary slightly between versions — this tool includes fallback logic.
-Some plugin fields may appear multiple times — values are merged and deduplicated.
-Large searches can take time depending on:
-Number of plugin families
-Thread count
-Network latency
+```
+
+## ⚠️ Notes
+- Nessus API endpoints can vary slightly between versions — this tool includes fallback logic.
+- Some plugin fields may appear multiple times — values are merged and deduplicated.
+- Large searches can take time depending on:
+  - Number of plugin families
+  - Thread count
+  - Network latency
