@@ -24,83 +24,105 @@ A Python CLI tool for querying a local Nessus Professional instance, extracting 
 - requests
 
 Install dependencies:
-
+```
 pip install requests
-🔐 Authentication
+```
+
+## 🔐 Authentication
 
 You can authenticate in two ways:
 
-1. CLI Arguments
+### 1. CLI Arguments
+```
 --access-key YOUR_ACCESS_KEY
 --secret-key YOUR_SECRET_KEY
-
+```
 or
-
+```
 --token YOUR_SESSION_TOKEN
-2. Environment Variables (Recommended)
+```
+
+### 2. Environment Variables (Recommended)
+```
 export nessus_access_key="YOUR_ACCESS_KEY"
 export nessus_secret_key="YOUR_SECRET_KEY"
-# OR
+```
+OR
+```
 export nessus_api_token="YOUR_TOKEN"
+```
 
 CLI arguments take precedence over environment variables.
 
 An Access Key and Secret Key can be obtained from the Nessus UI:
 ![Generate API keys in Nessus](./Images/nessus-generate-api-keys.png)
 
-🧠 Modes of Operation
-1. Expression Search Mode
+## 🧠 Modes of Operation
+### 1. Expression Search Mode
 
 Search plugin names using boolean logic.
-
+```
 --expr '("Windows Server" AND 2016) AND NOT 2019'
-Supported Operators
-Operator	Description
-AND	Both terms must match
-OR	Either term matches
-NOT	Excludes term
-()	Grouping
-Examples
+```
+
+#### Suppported Operators
+| Operator | Description           |
+| -------- | --------------------- |
+| AND      | Both terms must match |
+| OR       | Either term matches   |
+| NOT      | Excludes term         |
+| ()       | Grouping              |
+
+#### Examples
+```
 --expr "Windows AND 2016"
 --expr "KB5075999 OR KB5073722"
 --expr "(Windows AND Server) AND NOT 2019"
-2. Direct Plugin ID Mode
+```
+
+### 2. Direct Plugin ID Mode
 
 Skip searching and fetch specific plugins:
-
+```
 --plugin-id 298556
-
+```
 Multiple IDs:
-
+```
 --plugin-id 298556,283466,270384
-📤 Output Options
---out / -o
+```
 
+## 📤 Output Options
+
+`--out / -o`
 Comma-separated list of output formats:
-
+```
 json,csv,txt
-Type	Description
-json	Full Nessus plugin JSON
-csv	Structured output with all attributes
-txt	Flat list of CVEs (one per line)
---filename / -f
+```
 
+| Type | Description                           |
+| ---- | ------------------------------------- |
+| json | Full Nessus plugin JSON               |
+| csv  | Structured output with all attributes |
+| txt  | Flat list of CVEs (one per line)      |
+***
+`--filename / -f`
 Single base filename used for all outputs.
-
+```
 --filename results
-
+```
 Produces:
-
+```
 results.json
 results.csv
 results.txt
-Default Behavior
+```
 
-If --out is not specified:
+#### Default Behavior
+If `--out` is not specified:
+- No files are written
+- Results are printed to stdout
 
-No files are written
-Results are printed to stdout
-📊 CSV Output Details
+### 📊 CSV Output Details
 
 The CSV includes:
 
