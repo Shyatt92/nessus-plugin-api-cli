@@ -1,4 +1,4 @@
-# Nessus Plugin Extractor & Analyzer
+# Nessus Plugin Extractor & Analyser
 
 A Python CLI tool for querying a local Nessus Professional instance, extracting plugin data, and exporting it in multiple formats.
 
