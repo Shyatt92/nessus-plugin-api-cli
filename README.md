@@ -195,6 +195,9 @@ python fetch_matched_nessus_plugin.py \
   --filename results \
   -k
 ```
+
+![Command output](./Images/example01.png)
+
 ### Example 2: Direct Plugin Lookup
 ```
 python fetch_matched_nessus_plugin.py \
@@ -203,6 +206,10 @@ python fetch_matched_nessus_plugin.py \
   --filename plugins \
   -k
 ```
+
+![Command output](./Images/example02.png)
+![CVS output contents](./Images/example03.png)
+
 ### Example 3: Using Environment Variables
 ```
 export nessus_access_key=XXX
